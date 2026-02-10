@@ -1,0 +1,89 @@
+============================================================
+ML Control System - Industrial Wastewater Treatment Optimization
+============================================================
+Data loaded successfully: (240, 15)
+Training Data: (192, 10)
+Test Data:     (48, 10)
+------------------------------------------------------------
+
+[PART 2.1] Model Selection & Training (K, L, M)
+
+  Evaluating models for Target K (Toxicity Level)...
+    > Linear Regression : R2=-0.040, RMSE=8.179, MAE=6.674
+    > Random Forest     : R2=0.800, RMSE=3.584, MAE=2.955
+    > Gradient Boosting : R2=0.793, RMSE=3.648, MAE=2.932
+  [WINNER] Random Forest selected for K.
+    Key Driver: F (Chemical Dosage) (64.6%)
+
+  Evaluating models for Target L (Turbidity)...
+    > Linear Regression : R2=0.439, RMSE=3.945, MAE=3.321
+    > Random Forest     : R2=0.739, RMSE=2.688, MAE=2.215
+    > Gradient Boosting : R2=0.778, RMSE=2.484, MAE=1.949
+  [WINNER] Gradient Boosting selected for L.
+    Key Driver: G (Aeration Speed) (48.3%)
+
+  Evaluating models for Target M (Op Cost $/hr)...
+    > Linear Regression : R2=0.606, RMSE=6.678, MAE=5.630
+    > Random Forest     : R2=0.907, RMSE=3.237, MAE=2.693
+    > Gradient Boosting : R2=0.924, RMSE=2.936, MAE=2.354
+  [WINNER] Gradient Boosting selected for M.
+    Key Driver: F (Chemical Dosage) (59.1%)
+------------------------------------------------------------
+
+[PART 2.2] Predicting Status N (Classification)
+  > Logistic Regression: Acc=64.6%, F1=0.754
+  > Random Forest     : Acc=72.9%, F1=0.794
+  > Gradient Boosting : Acc=79.2%, F1=0.828
+  [WINNER] Gradient Boosting selected for Status N.
+  > Confusion Matrix:
+[[14  7]
+ [ 3 24]]
+
+[PART 3] SIMPLE CONTROL ADJUSTMENT LOGIC
+
+FOUND 21 'BAD' EXAMPLES. DEMONSTRATING FIX FOR 3:
+
+Example #1 (Row 24)
+  [BEFORE] Unacceptable State:
+    Controls: F (Chemical Dosage)=1.14, G (Aeration Speed)=35.3, H (Mixer RPM)=1.28
+    Status:   N (Compliance Status)=0 (VIOLATION)
+  [AFTER] Optimized Controls:
+    Controls: F (Chemical Dosage)=3.25, G (Aeration Speed)=80.0, H (Mixer RPM)=0.88
+    Status:   N (Compliance Status)=1 (COMPLIANT)
+    Hourly Savings: $25.52
+----------------------------------------
+
+Example #2 (Row 109)
+  [BEFORE] Unacceptable State:
+    Controls: F (Chemical Dosage)=3.85, G (Aeration Speed)=37.5, H (Mixer RPM)=0.80
+    Status:   N (Compliance Status)=0 (VIOLATION)
+  [AFTER] Optimized Controls:
+    Controls: F (Chemical Dosage)=3.25, G (Aeration Speed)=80.0, H (Mixer RPM)=0.88
+    Status:   N (Compliance Status)=1 (COMPLIANT)
+    Hourly Savings: $6.53
+----------------------------------------
+
+Example #3 (Row 143)
+  [BEFORE] Unacceptable State:
+    Controls: F (Chemical Dosage)=3.96, G (Aeration Speed)=62.2, H (Mixer RPM)=0.58
+    Status:   N (Compliance Status)=0 (VIOLATION)
+  [AFTER] Optimized Controls:
+    Controls: F (Chemical Dosage)=3.25, G (Aeration Speed)=67.5, H (Mixer RPM)=0.50
+    Status:   N (Compliance Status)=1 (COMPLIANT)
+    Hourly Savings: $1.85
+----------------------------------------
+
+[BUSINESS VALUE] Projected Annual Savings: $98,991.58
+
+[PART 4] Generating Outstanding Visualizations...
+  > Saved correlation_heatmap.png
+
+[JUSTIFICATION] Why Negative R2 only for K?
+  1. K (Toxicity) is a 'Sweet Spot' problem (V-shaped).
+  2. L/M are 'Volume' problems (Linear).
+  > Saved model_comparison.png
+  > Saved classification_comparison.png
+  > Saved confusion_matrix.png
+  > Saved feature_importance_toxicity.png
+  > Saved control_landscape_heatmap.png
+  > Saved optimization_impact.png
