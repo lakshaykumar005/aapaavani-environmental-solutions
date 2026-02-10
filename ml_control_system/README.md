@@ -8,6 +8,17 @@ The solution includes:
 2.  **Predictive Modeling**: Using Random Forest to predict Toxicity, Turbidity, and Compliance.
 3.  **Control Optimization**: A "Digital Twin" logic that prescribes optimal settings (Chemical Dosage, Aeration Speed, Mixer RPM).
 
+## Deliverables Checklist
+1.  **Script to Generate Data**: `src/generate_dataset.py` (Contains physics equations).
+2.  **Generated Dataset**: `data/synthetic_control_data.csv` (Included in zip).
+3.  **Model Training & Evaluation**: `src/models.py` (Trains GBR/RF, reports R2/RMSE/F1).
+4.  **Control Logic Demonstration**: `src/optimization.py` (Simulates grid search and prints improvement).
+    *   *Visual Proof*: `images/control_landscape_heatmap.png` & `images/optimization_impact.png`.
+5.  **Explanations & Design Choices**:
+    *   `Project_Report.md`: Full "A-Z" documentation.
+    *   `README.md`: Quickstart & Logic summary.
+    *   Inline Comments: Detailed physics/logic explanations in Python files.
+
 ## Business Context & Variable Mapping
 To make the abstract problem (A-M) concrete, we mapped the variables to a wastewater scenario:
 
