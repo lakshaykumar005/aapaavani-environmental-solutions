@@ -3,7 +3,6 @@ import os
 from config import DATA_DIR
 
 def load_data(filename="synthetic_control_data.csv"):
-    """Loads the dataset from the data directory."""
     csv_path = os.path.join(DATA_DIR, filename)
     try:
         df = pd.read_csv(csv_path)

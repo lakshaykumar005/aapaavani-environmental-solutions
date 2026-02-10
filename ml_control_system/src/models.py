@@ -7,17 +7,6 @@ from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, a
 from config import FEATURE_COLS, TARGET_COLS_REG, TARGET_COL_CLS, VAR_MAP
 
 def train_models(df):
-    """
-    Trains regression and classification models.
-    Returns:
-        reg_models: Dict of trained regression models
-        clf_model: Trained classification model
-        data_split: Tuple of (X_train, X_test, y_reg_train, y_reg_test, y_cls_train, y_cls_test)
-        model_results: List of dicts with regression metrics
-        cls_results: List of dicts with classification metrics
-        conf_mx: Confusion matrix for the best classifier
-        best_cls_name: Name of the best classifier
-    """
     X = df[FEATURE_COLS]
     y_reg = df[TARGET_COLS_REG]
     y_cls = df[TARGET_COL_CLS]

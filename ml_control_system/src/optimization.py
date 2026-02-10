@@ -3,7 +3,6 @@ import pandas as pd
 from config import FEATURE_COLS, TARGET_COLS_REG, VAR_MAP
 
 def predict_system_state(inputs_dict, reg_models, clf_model):
-    """Helper to predict K, L, M, N for a given input state using trained models."""
     input_df = pd.DataFrame([inputs_dict])
     input_df = input_df[FEATURE_COLS]
     
@@ -16,7 +15,6 @@ def predict_system_state(inputs_dict, reg_models, clf_model):
     return preds
 
 def optimize_controls(current_state, reg_models, clf_model):
-    """Grid Search Algorithm to find best F, G, H."""
     fixed_inputs = {k: current_state[k] for k in ['A', 'B', 'C', 'D', 'E', 'I', 'J']}
     
     f_steps = np.linspace(1.0, 4.0, 5) 
@@ -47,7 +45,6 @@ def optimize_controls(current_state, reg_models, clf_model):
     return best_controls, best_predictions
 
 def demonstrate_optimization(X_test, y_reg_test, y_cls_test, reg_models, clf_model):
-    """Finds bad examples and demonstrates the fix."""
     print("\n[PART 3] SIMPLE CONTROL ADJUSTMENT LOGIC")
     bad_indices = y_cls_test[y_cls_test == 0].index
     trajectories = []

@@ -5,9 +5,6 @@ import pandas as pd
 np.random.seed(42)
 
 def generate_dataset(n_rows=240):
-    """
-    Generates a synthetic time-series dataset for the ML control problem.
-    """
     # --- 1. Generate Inputs (External Conditions) ---
     # Scenario: Industrial Wastewater Treatment Plant
     
